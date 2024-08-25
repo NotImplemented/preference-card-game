@@ -35,11 +35,9 @@ const int DIAMONDS = 2;
 const int HEARTS = 3;
 
 const std::vector<std::string> PLAYERS = {"South", "West", "East"};
+const std::string CARDS = "7890JQKA";
 
 int main_suit = -1;
-
-const std::string cards = "7890JQKA";
-
 
 std::map<std::vector<unsigned int>, std::pair<int, int> > cache;
 
@@ -50,7 +48,7 @@ int create_hand(std::array<std::string, 4>& suits)
     for(size_t suit = 0; suit < 4; ++suit) {
         for(const char ch: suits.at(suit)) {
 
-            int idx = cards.find(ch);
+            int idx = CARDS.find(ch);
             assert(idx >= 0);
             result |= (1 << (idx + suit * 8));
         }
@@ -91,7 +89,7 @@ void show_card(int idx) {
         std::cout << "♦";
     }
 
-    std::cout << cards[idx % 8];
+    std::cout << CARDS[idx % 8];
 }
 
 /* card is in [0, 32) range */
